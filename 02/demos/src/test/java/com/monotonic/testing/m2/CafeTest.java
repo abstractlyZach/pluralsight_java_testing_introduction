@@ -1,5 +1,6 @@
 package com.monotonic.testing.m2;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static com.monotonic.testing.m2.CoffeeType.Espresso;
@@ -12,16 +13,21 @@ public class CafeTest {
     private static final int NO_MILK = 0;
     private static final int NO_BEANS = 0;
 
-    private Cafe cafeWithBeans() {
-        Cafe cafe = new Cafe();
+    private Cafe cafe;
+
+    @Before
+    public void before() {
+        cafe = new Cafe();
+    }
+
+    private void withBeans() {
         cafe.restockBeans(REQUIRED_BEANS);
-        return cafe;
     }
 
     @Test
     public void canBrewEspresso() {
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         Coffee coffee = cafe.brew(Espresso);
@@ -34,7 +40,7 @@ public class CafeTest {
     @Test
     public void brewingEspressoConsumesBeans() {
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         cafe.brew(Espresso);
@@ -46,7 +52,7 @@ public class CafeTest {
     @Test
     public void canBrewLatte() {
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
         cafe.restockMilk(227);
 
         // when
@@ -58,18 +64,12 @@ public class CafeTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void mustRestockMilk() {
-        // given
-        Cafe cafe = new Cafe();
-
         // when
         cafe.restockMilk(NO_MILK);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void mustRestockBeans() {
-        // given
-        Cafe cafe = new Cafe();
-
         // when
         cafe.restockBeans(NO_BEANS);
     }
@@ -77,7 +77,7 @@ public class CafeTest {
     @Test(expected = IllegalStateException.class)
     public void lattesRequireMilk() {
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         cafe.brew(Latte);

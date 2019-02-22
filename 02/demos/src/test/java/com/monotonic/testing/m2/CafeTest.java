@@ -8,9 +8,13 @@ import static org.junit.Assert.assertEquals;
 
 public class CafeTest {
 
+    private static final int REQUIRED_BEANS = Espresso.getRequiredBeans();
+    private static final int NO_MILK = 0;
+    private static final int NO_BEANS = 0;
+
     private Cafe cafeWithBeans() {
         Cafe cafe = new Cafe();
-        cafe.restockBeans(7);
+        cafe.restockBeans(REQUIRED_BEANS);
         return cafe;
     }
 
@@ -23,8 +27,7 @@ public class CafeTest {
         Coffee coffee = cafe.brew(Espresso);
 
         // then
-        assertEquals("Wrong number of beans", 7, coffee.getBeans());
-        assertEquals("Wrong amount of milk", 0, coffee.getMilk());
+        assertEquals("Wrong number of beans", NO_MILK, coffee.getMilk());
         assertEquals("Wrong type of coffee", Espresso, coffee.getType());
     }
 
@@ -37,7 +40,7 @@ public class CafeTest {
         cafe.brew(Espresso);
 
         // then
-        assertEquals(0, cafe.getBeansInStock());
+        assertEquals(NO_BEANS, cafe.getBeansInStock());
     }
 
     @Test
@@ -59,7 +62,7 @@ public class CafeTest {
         Cafe cafe = new Cafe();
 
         // when
-        cafe.restockMilk(0);
+        cafe.restockMilk(NO_MILK);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -68,7 +71,7 @@ public class CafeTest {
         Cafe cafe = new Cafe();
 
         // when
-        cafe.restockBeans(0);
+        cafe.restockBeans(NO_BEANS);
     }
 
     @Test(expected = IllegalStateException.class)

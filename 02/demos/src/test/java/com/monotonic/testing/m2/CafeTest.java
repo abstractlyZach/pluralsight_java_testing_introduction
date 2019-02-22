@@ -8,11 +8,16 @@ import static org.junit.Assert.assertEquals;
 
 public class CafeTest {
 
+    private Cafe cafeWithBeans() {
+        Cafe cafe = new Cafe();
+        cafe.restockBeans(7);
+        return cafe;
+    }
+
     @Test
     public void canBrewEspresso() {
         // given
-        Cafe cafe = new Cafe();
-        cafe.restockBeans(7);
+        Cafe cafe = cafeWithBeans();
 
         // when
         Coffee coffee = cafe.brew(Espresso);
@@ -26,8 +31,7 @@ public class CafeTest {
     @Test
     public void brewingEspressoConsumesBeans() {
         // given
-        Cafe cafe = new Cafe();
-        cafe.restockBeans(7);
+        Cafe cafe = cafeWithBeans();
 
         // when
         cafe.brew(Espresso);
@@ -39,8 +43,7 @@ public class CafeTest {
     @Test
     public void canBrewLatte() {
         // given
-        Cafe cafe = new Cafe();
-        cafe.restockBeans(7);
+        Cafe cafe = cafeWithBeans();
         cafe.restockMilk(227);
 
         // when
@@ -71,8 +74,7 @@ public class CafeTest {
     @Test(expected = IllegalStateException.class)
     public void lattesRequireMilk() {
         // given
-        Cafe cafe = new Cafe();
-        cafe.restockBeans(7);
+        Cafe cafe = cafeWithBeans();
 
         // when
         cafe.brew(Latte);

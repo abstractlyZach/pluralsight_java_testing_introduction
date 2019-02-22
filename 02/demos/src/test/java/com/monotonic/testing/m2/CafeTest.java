@@ -23,9 +23,9 @@ public class CafeTest {
         Coffee coffee = cafe.brew(Espresso);
 
         // then
-        assertEquals(7, coffee.getBeans());
-        assertEquals(0, coffee.getMilk());
-        assertEquals(Espresso, coffee.getType());
+        assertEquals("Wrong number of beans", 7, coffee.getBeans());
+        assertEquals("Wrong amount of milk", 0, coffee.getMilk());
+        assertEquals("Wrong type of coffee", Espresso, coffee.getType());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class CafeTest {
         Coffee coffee = cafe.brew(Latte);
 
         // then
-        assertEquals(Latte, coffee.getType());
+        assertEquals("Wrong type of coffee", Latte, coffee.getType());
     }
 
     @Test(expected = IllegalArgumentException.class)

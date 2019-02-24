@@ -10,4 +10,10 @@ public class WordWrapTest {
 
     // a method that breaks words on specified space with new line, like a word processor would.
 
+    @Test
+    public void lineShouldWrapIfOverLineLength() {
+        String result = WordWrap.wrap("The Sleepy", LINE_LENGTH);
+        assertEquals("The S\nleepy", result);
+    }
+
 }

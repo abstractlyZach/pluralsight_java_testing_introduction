@@ -9,14 +9,18 @@ public class WordWrap {
 
         accumulator.append(inputLine, 0, min(length, lineLength));
 
-        if (length > lineLength) {
+        int split = lineLength;
+
+        if (length > split) {
             accumulator.append('\n');
-            accumulator.append(inputLine, lineLength, lineLength + lineLength);
+            accumulator.append(inputLine, split, split + lineLength);
         }
 
-        if (length > lineLength + lineLength) {
+        split += lineLength;
+
+        if (length > split) {
             accumulator.append('\n');
-            accumulator.append(inputLine, lineLength + lineLength, length);
+            accumulator.append(inputLine, split, length);
         }
 
         return accumulator.toString();

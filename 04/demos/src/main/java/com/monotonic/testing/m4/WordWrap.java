@@ -11,7 +11,12 @@ public class WordWrap {
 
         if (length > lineLength) {
             accumulator.append('\n');
-            accumulator.append(inputLine, lineLength, length);
+            accumulator.append(inputLine, lineLength, lineLength + lineLength);
+        }
+
+        if (length > lineLength + lineLength) {
+            accumulator.append('\n');
+            accumulator.append(inputLine, lineLength + lineLength, length);
         }
 
         return accumulator.toString();

@@ -17,7 +17,7 @@ public class WordWrapTest {
     }
 
     @Test
-    public void shortLinesShouldNotWrap() {
+    public void shortLineShouldNotWrap() {
         String result = WordWrap.wrap("The", LINE_LENGTH);
         assertEquals("The", result);
     }
@@ -29,7 +29,7 @@ public class WordWrapTest {
     }
 
     @Test
-    public void evenLongerLinesShouldWrapThrice() {
+    public void evenLongerLineShouldWrapThrice() {
         String result = WordWrap.wrap("The Sleepy Brown Fox", LINE_LENGTH);
         assertEquals("The S\nleepy\n Brow\nn Fox", result);
     }
